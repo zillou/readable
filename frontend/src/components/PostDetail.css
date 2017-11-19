@@ -1,0 +1,39 @@
+@media (min-width: 48em) {
+  html {
+    font-size: 18px;
+  }
+}
+
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #555;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: #333;
+}
+
+.post-view {
+  margin-bottom: 4rem;
+}
+.post-view-title {
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+.post-view-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
+}
