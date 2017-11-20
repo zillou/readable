@@ -8,7 +8,7 @@ const Post = ({ id, title, timestamp, body, author, category, voteScore }) =>
     <div className="vote-score pull-right">{voteScore}</div>
     <div className="title">
       <Link to={`/${category}`} className="category">{category}</Link>
-      <Link to={`/posts/${id}`}>{title}</Link>
+      <Link to={`/${category}/${id}`}>{title}</Link>
     </div>
     <div className="info">
       <span>{author}</span>

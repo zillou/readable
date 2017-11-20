@@ -10,13 +10,13 @@ import "./Comment.css"
 
 class PostDetailView extends React.Component {
   componentWillMount() {
-    const id = this.props.match.params.id
+    const id = this.props.match.params.post_id
     this.props.fetchData(id)
   }
 
   deletePost(event) {
     event.preventDefault()
-    const postID = this.props.match.params.id
+    const postID = this.props.match.params.post_id
 
     this.props.dispatch(deletePost(postID))
     this.props.history.push("/")

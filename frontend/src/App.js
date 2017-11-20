@@ -22,8 +22,8 @@ class App extends Component {
                   <Route exact path="/" component={Home}/>
                   <Route path="/about/" component={About} />
                   <Route path="/posts/new" component={PostForm} />
-                  <Route path="/posts/:id" component={PostDetailView} />
                   <Route exact path="/:category" component={Category}/>
+                  <Route exact path="/:category/:post_id" component={PostDetailView} />
                 </Switch>
               </div>
               <div className="col-md-3">
