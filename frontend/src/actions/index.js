@@ -62,11 +62,12 @@ export const fetchPosts = (category = null) => dispatch => (
 
 export const fetchPost = (id) => dispatch => (
   API.fetchPost(id)
-    .then(post => dispatch(receivePost(post)))
+    .then(post => post.deleted === false && dispatch(receivePost(post)))
 )
 
 export const fetchComments = (postID) => (dispatch) => (
-  API.fetchComments(postID).then(comments => dispatch(receiveComments(comments)))
+  API.fetchComments(postID).then(comments => 
+    dispatch(receiveComments(comments.filter(({deleted}) => deleted === false))))
 )
 
 export const createPost = (postParams) => (dispatch) => 
