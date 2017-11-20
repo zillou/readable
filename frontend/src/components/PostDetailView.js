@@ -9,7 +9,7 @@ import  CommentForm from "./CommentForm"
 import "./Comment.css"
 
 class PostDetailView extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     const id = this.props.match.params.post_id
     this.props.fetchData(id)
   }

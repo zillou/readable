@@ -5,7 +5,7 @@ import { fetchPosts } from "../actions"
 import PostList from "./PostList"
 
 class PostView extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     const category = this.props.match.params.category
     this.props.fetchData(category)
   }
