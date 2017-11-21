@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 
 import { fetchPost, fetchComments, deletePost, deleteComment } from "../actions"
 import  CommentForm from "./CommentForm"
+import VoteScore from "./VoteScore"
 
 import "./Comment.css"
 
@@ -57,8 +58,8 @@ class PostDetailView extends React.Component {
         <div className="comment-title">
           {comment.author} posted at <time>{moment(comment.timestamp).format("LLL")}</time>
           <a onClick={() => this.deleteComment(comment.id)} className="btn btn-link btn-xs">Delete</a>
-          <div className="comment-info">
-            <span>{comment.voteScore}</span>
+          <div className="float-left">
+            <VoteScore score={comment.voteScore} />
           </div>
         </div>
         <div className="comment-body">{comment.body}</div>

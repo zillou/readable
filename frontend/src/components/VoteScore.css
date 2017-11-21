@@ -1,0 +1,32 @@
+.vote {
+  min-width: 46px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.vote-count-post {
+  font-size: 15px;
+}
+
+.vote-btn {
+  border: none;
+  cursor: pointer;
+  display: block;
+  text-indent: -999em;
+  width: 40px;
+  background-image: url(https://cdn.sstatic.net/Sites/stackoverflow/img/sprites.svg?v=1b3cdae197be),none;
+  background-size: initial;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.vote-up {
+  height: 25px;
+  background-position: 0 -170px;
+}
+
+.vote-down {
+  margin-bottom: 5px;
+  height: 25px;
+  background-position: 0 -220px;
+}
