@@ -36,7 +36,6 @@ export const fetchComments = (postID) => {
 export const createPost = data => {
   const body = JSON.stringify(data)
 
-  console.log(body)
   return fetch(`${API_ROOT}/posts`, { 
     method: 'POST',
     headers,
@@ -62,4 +61,18 @@ export const deleteComment = (id) =>
   fetch(`${API_ROOT}/comments/${id}`, {
     method: "DELETE",
     headers
+  })
+
+export const voteComment = (id, vote) =>
+  fetch(`${API_ROOT}/comments/${id}`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ option: vote })
+  })
+
+export const votePost = (id, vote) =>
+  fetch(`${API_ROOT}/posts/${id}`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ option: vote })
   })

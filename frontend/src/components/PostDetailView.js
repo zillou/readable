@@ -10,6 +10,10 @@ import VoteScore from "./VoteScore"
 import "./Comment.css"
 
 class PostDetailView extends React.Component {
+  state = {
+    isEditing: false
+  }
+
   componentDidMount() {
     const id = this.props.match.params.post_id
     this.props.fetchData(id)
@@ -21,6 +25,11 @@ class PostDetailView extends React.Component {
 
     this.props.dispatch(deletePost(postID))
     this.props.history.push("/")
+  }
+
+  editPost(event) {
+    event.preventDefault()
+    this.setState({idEditing: true})
   }
 
   deleteComment(id) {
@@ -40,7 +49,8 @@ class PostDetailView extends React.Component {
         </div>
 
         <div>
-          <a onClick={this.deletePost.bind(this)} className="btn btn-danger">Delete</a>
+          <button onClick={this.editPost.bind(this)} className="btn btn-light">Edit</button>
+          <button onClick={this.deletePost.bind(this)} className="btn btn-link">Delete</button>
         </div>
 
         <div className="comments">
@@ -59,7 +69,7 @@ class PostDetailView extends React.Component {
           {comment.author} posted at <time>{moment(comment.timestamp).format("LLL")}</time>
           <a onClick={() => this.deleteComment(comment.id)} className="btn btn-link btn-xs">Delete</a>
           <div className="float-left">
-            <VoteScore score={comment.voteScore} />
+            <VoteScore score={comment.voteScore} commentID={comment.id} />
           </div>
         </div>
         <div className="comment-body">{comment.body}</div>

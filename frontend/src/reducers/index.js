@@ -5,8 +5,12 @@ import {
   RECEIVE_COMMENTS, 
   POST_CREATED, 
   POST_DELETED,
+  UP_VOTED_POST,
+  DOWN_VOTED_POST,
   COMMENT_CREATED,
   COMMENT_DELETED,
+  UP_VOTED_COMMENT,
+  DOWN_VOTED_COMMENT,
 } from "../actions"
 import { combineReducers } from "redux"
 
@@ -27,6 +31,28 @@ const posts = (state = [], action) => {
       return [...state, action.post]
     case POST_DELETED:
       return state.filter(({id}) => id === action.postID)
+    case UP_VOTED_POST:
+      return state.map((post) => {
+        if (post.id !== action.postID) {
+          return post
+        }
+
+        return {
+          ...post,
+          voteScore: post.voteScore + 1
+        }
+      })
+    case DOWN_VOTED_POST:
+      return state.map((post) => {
+        if (post.id !== action.postID) {
+          return post
+        }
+
+        return {
+          ...post,
+          voteScore: post.voteScore - 1
+        }
+      })
     default:
       return state
   }
@@ -49,6 +75,28 @@ const comments = (state = [], action) => {
       return [...state, action.comment]
     case COMMENT_DELETED:
       return state.filter(({id}) => id === action.commentID)
+    case UP_VOTED_COMMENT:
+      return state.map((comment) => {
+        if (comment.id !== action.commentID) {
+          return comment
+        }
+
+        return {
+          ...comment,
+          voteScore: comment.voteScore + 1
+        }
+      })
+    case DOWN_VOTED_COMMENT:
+      return state.map((comment) => {
+        if (comment.id !== action.commentID) {
+          return comment
+        }
+
+        return {
+          ...comment,
+          voteScore: comment.voteScore - 1
+        }
+      })
     default:
       return state
   }

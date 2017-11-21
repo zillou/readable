@@ -9,6 +9,12 @@ export const POST_DELETED = "POST_DELETED"
 export const COMMENT_CREATED = "COMMENT"
 export const COMMENT_DELETED = "COMMENT_DELETED"
 
+export const UP_VOTED_POST = "UP_VOTED_POST"
+export const DOWN_VOTED_POST = "DOWN_VOTED_POST"
+
+export const UP_VOTED_COMMENT = "UP_VOTED_COMMENT"
+export const DOWN_VOTED_COMMENT = "DOWN_VOTED_COMMENT"
+
 export const receiveCategories = categories => ({
   type: RECEIVE_CATEGORIES,
   categories
@@ -39,6 +45,16 @@ export const postDeleted = postID => ({
   postID
 })
 
+export const upVotedPost = postID =>({
+  type: UP_VOTED_POST,
+  postID
+})
+
+export const downVotedPost = postID =>({
+  type: DOWN_VOTED_POST,
+  postID
+})
+
 export const commentCreated = comment => ({
   type: COMMENT_CREATED,
   comment
@@ -49,6 +65,15 @@ export const commentDeleted = commentID => ({
   commentID
 })
 
+export const upVotedComment = commentID =>({
+  type: UP_VOTED_COMMENT,
+  commentID
+})
+
+export const downVotedComment = commentID =>({
+  type: DOWN_VOTED_COMMENT,
+  commentID
+})
 
 export const fetchCategories = () => dispatch => (
   API.fetchCategories()
@@ -81,3 +106,9 @@ export const deletePost = (id) => (dispatch) =>
 
 export const deleteComment = (id) => (dispatch) =>
   API.deleteComment(id).then(() => dispatch(commentDeleted(id)))
+
+export const voteComment = (id, option) => (dispatch) =>
+  API.voteComment(id, option).then(() => option === 'upVote' ? dispatch(upVotedComment(id)) : dispatch(downVotedComment(id)))
+
+export const votePost = (id, option) => (dispatch) =>
+  API.votePost(id, option).then(() => option === 'upVote' ? dispatch(upVotedPost(id)) : dispatch(downVotedPost(id)))

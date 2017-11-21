@@ -11,7 +11,7 @@ const Post = ({ id, title, timestamp, body, author, category, voteScore }) =>
       <Link to={`/${category}/${id}`}>{title}</Link>
 
       <div className="float-left">
-        <VoteScore score={voteScore} />
+        <VoteScore score={voteScore} postID={id} />
       </div>
     </div>
     <div className="info">
