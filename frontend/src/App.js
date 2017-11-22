@@ -7,7 +7,7 @@ import Sidebar from "./components/Sidebar"
 import Category from "./components/Category"
 import About from "./components/About"
 import PostDetailView from "./components/PostDetailView"
-import PostForm from "./components/PostForm"
+import CreatePostView from "./components/CreatePostView"
 
 const App = () => (
   <BrowserRouter>
@@ -19,7 +19,7 @@ const App = () => (
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/about/" component={About} />
-              <Route path="/posts/new" component={PostForm} />
+              <Route path="/posts/new" component={CreatePostView} />
               <Route exact path="/:category" component={Category}/>
               <Route exact path="/:category/:post_id" component={PostDetailView} />
             </Switch>

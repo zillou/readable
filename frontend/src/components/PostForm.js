@@ -1,15 +1,12 @@
 import React from "react"
-import { connect } from "react-redux"
 import uuid from "uuid/v1"
-
-import { createPost } from "../actions"
 
 class PostForm extends React.Component {
   state = {
-    title: "",
-    author: "",
-    category: "",
-    body: "",
+    title: this.props.title,
+    author: this.props.author,
+    category: this.props.category,
+    body: this.props.body
   }
 
   onSubmit(event) {
@@ -24,8 +21,7 @@ class PostForm extends React.Component {
       category: this.state.category
     }
 
-    this.props.dispatch(createPost(post))
-    this.props.history.push("/")
+    this.props.onPostSubmit(post)
   }
 
   handleInputChange(event) {
@@ -76,4 +72,4 @@ class PostForm extends React.Component {
   }
 }
 
-export default connect()(PostForm)
+export default PostForm
