@@ -5,6 +5,7 @@ export const RECEIVE_POST = "RECEIVE_POST"
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS"
 
 export const POST_CREATED = "POST_CREATED"
+export const POST_UPDATED = "POST_UPDATED"
 export const POST_DELETED = "POST_DELETED"
 export const COMMENT_CREATED = "COMMENT"
 export const COMMENT_DELETED = "COMMENT_DELETED"
@@ -33,6 +34,11 @@ export const receivePost = post => ({
 export const receiveComments = comments => ({
   type: RECEIVE_COMMENTS,
   comments
+})
+
+export const postUpdated = post => ({
+  type: POST_UPDATED,
+  post
 })
 
 export const postCreated = post => ({
@@ -97,6 +103,9 @@ export const fetchComments = (postID) => (dispatch) => (
 
 export const createPost = (postParams) => (dispatch) => 
   API.createPost(postParams).then(post => dispatch(postCreated(post)))
+
+export const updatePost = (postParams) => (dispatch) => 
+  API.updatePost(postParams).then(post => dispatch(postUpdated(post)))
 
 export const createComment = (commentParams) => (dispatch) => 
   API.createComment(commentParams).then(comment => dispatch(commentCreated(comment)))

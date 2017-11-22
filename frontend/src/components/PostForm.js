@@ -13,7 +13,7 @@ class PostForm extends React.Component {
     event.preventDefault()
 
     const post = {
-      id: uuid(),
+      id: this.props.id || uuid(),
       timestamp: Date.now(),
       title: this.state.title,
       body: this.state.body,

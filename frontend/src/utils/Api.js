@@ -43,6 +43,15 @@ export const createPost = data => {
   }).then(data => data.json())
 }
 
+export const updatePost = data => {
+  fetch(`${API_ROOT}/posts/${data.id}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(data)
+  }).then(data => data.json())
+    .then(data => data)
+}
+
 export const deletePost = (id) => 
   fetch(`${API_ROOT}/posts/${id}`, {
     method: "DELETE",

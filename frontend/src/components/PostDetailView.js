@@ -3,9 +3,10 @@ import moment from "moment"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 
-import { fetchPost, fetchComments, deletePost, deleteComment } from "../actions"
+import { fetchPost, updatePost, fetchComments, deletePost, deleteComment } from "../actions"
 import  CommentForm from "./CommentForm"
 import VoteScore from "./VoteScore"
+import PostForm from "./PostForm"
 
 import "./Comment.css"
 
@@ -23,17 +24,21 @@ class PostDetailView extends React.Component {
     event.preventDefault()
     const postID = this.props.match.params.post_id
 
-    this.props.dispatch(deletePost(postID))
-    this.props.history.push("/")
+    this.props.dispatch(deletePost(postID)).then(() => this.props.history.push("/"))
   }
 
   editPost(event) {
     event.preventDefault()
-    this.setState({idEditing: true})
+    this.setState({isEditing: true})
   }
 
   deleteComment(id) {
     this.props.dispatch(deleteComment(id))
+  }
+
+  onPostSubmit(post) {
+    this.props.dispatch(updatePost(post))
+    this.setState({isEditing: false})
   }
 
   renderPost() {
@@ -80,7 +85,10 @@ class PostDetailView extends React.Component {
   render() {
     return (
       <div>
-        { this.props.post && this.renderPost()}
+        { this.state.isEditing
+          ? <PostForm {...this.props.post} onPostSubmit={this.onPostSubmit.bind(this)} />
+          : this.props.post && this.renderPost() 
+        }
       </div>
     )
   }

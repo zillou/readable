@@ -5,6 +5,7 @@ import {
   RECEIVE_COMMENTS, 
   POST_CREATED, 
   POST_DELETED,
+  POST_UPDATED,
   UP_VOTED_POST,
   DOWN_VOTED_POST,
   COMMENT_CREATED,
@@ -61,6 +62,8 @@ const posts = (state = [], action) => {
 const post = (state = null, action) => {
   switch (action.type) {
     case RECEIVE_POST:
+      return action.post
+    case POST_UPDATED:
       return action.post
     default:
       return state
